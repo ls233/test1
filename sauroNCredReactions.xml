@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by libAntimony version v2.4 on 2014-03-27 09:27 with libSBML version 5.8.1. -->
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" level="3" version="1" comp:required="true">
+  <model id="cell" name="cell">
+    <listOfCompartments>
+      <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="IFNb_env" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="IFNa_env" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="SOCS1m" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="w" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species id="IFNb_mRNA" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="IRF7Pn" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="STATP2n" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="STAT" compartment="default_compartment" initialConcentration="0.1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="IRF7m" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="IFNa_mRNA" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="TNFam" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="TNFenv" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="STATm" compartment="default_compartment" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="NS" constant="true"/>
+      <parameter id="IC1" constant="true"/>
+      <parameter id="IC2" constant="true"/>
+      <parameter id="IC2ifa" constant="true"/>
+      <parameter id="TJ" constant="false"/>
+      <parameter id="r5" constant="true"/>
+      <parameter id="n3" constant="true"/>
+      <parameter id="bm" constant="true"/>
+      <parameter id="sp" constant="true"/>
+      <parameter id="delta1" constant="true"/>
+      <parameter id="n1" constant="true"/>
+      <parameter id="sv" constant="true"/>
+      <parameter id="delta2" constant="true"/>
+      <parameter id="n2" constant="true"/>
+      <parameter id="TJtot" constant="true"/>
+      <parameter id="K3" constant="true"/>
+      <parameter id="K9" constant="true"/>
+      <parameter id="delta" constant="true"/>
+      <parameter id="r0" constant="true"/>
+      <parameter id="k15" constant="true"/>
+      <parameter id="tao1" constant="true"/>
+      <parameter id="C" constant="true"/>
+      <parameter id="vmax2" constant="true"/>
+      <parameter id="NA" constant="true"/>
+      <parameter id="K2" constant="true"/>
+      <parameter id="K5" constant="true"/>
+      <parameter id="tao3" constant="true"/>
+      <parameter id="r3" constant="true"/>
+      <parameter id="k8" constant="true"/>
+      <parameter id="tao4" constant="true"/>
+      <parameter id="k11" constant="true"/>
+      <parameter id="k14" constant="true"/>
+      <parameter id="tao6" constant="true"/>
+      <parameter id="k12" constant="true"/>
+      <parameter id="k16" constant="true"/>
+      <parameter id="tao8" constant="true"/>
+      <parameter id="vmax17" constant="true"/>
+      <parameter id="K17" constant="true"/>
+      <parameter id="r1" constant="true"/>
+      <parameter id="rmax20" constant="true"/>
+      <parameter id="K20" constant="true"/>
+      <parameter id="tao9" constant="true"/>
+      <parameter id="vmax19" constant="true"/>
+      <parameter id="K19" constant="true"/>
+      <parameter id="r4" constant="true"/>
+      <parameter id="k26" constant="true"/>
+      <parameter id="tao12" constant="true"/>
+      <parameter id="k28" constant="true"/>
+      <parameter id="tao13" constant="true"/>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="NS">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> r5 </ci>
+              <apply>
+                <power/>
+                <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+                <ci> n3 </ci>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <apply>
+                <power/>
+                <ci> bm </ci>
+                <ci> n3 </ci>
+              </apply>
+              <apply>
+                <power/>
+                <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+                <ci> n3 </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="IC1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <times/>
+                <ci> sp </ci>
+                <apply>
+                  <power/>
+                  <apply>
+                    <divide/>
+                    <ci> NS </ci>
+                    <ci> delta1 </ci>
+                  </apply>
+                  <ci> n1 </ci>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <power/>
+                <apply>
+                  <divide/>
+                  <ci> NS </ci>
+                  <ci> delta1 </ci>
+                </apply>
+                <ci> n1 </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="IC2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <times/>
+                <ci> sv </ci>
+                <apply>
+                  <power/>
+                  <apply>
+                    <divide/>
+                    <ci> NS </ci>
+                    <ci> delta2 </ci>
+                  </apply>
+                  <ci> n2 </ci>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <power/>
+                <apply>
+                  <divide/>
+                  <ci> NS </ci>
+                  <ci> delta2 </ci>
+                </apply>
+                <ci> n2 </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="IC2ifa">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <times/>
+                <cn type="integer"> 3 </cn>
+                <ci> sv </ci>
+                <apply>
+                  <power/>
+                  <apply>
+                    <divide/>
+                    <ci> NS </ci>
+                    <ci> delta2 </ci>
+                  </apply>
+                  <ci> n2 </ci>
+                </apply>
+              </apply>
+            </apply>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <power/>
+                <apply>
+                  <divide/>
+                  <ci> NS </ci>
+                  <ci> delta2 </ci>
+                </apply>
+                <ci> n2 </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="TJ">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> TJtot </ci>
+                  <apply>
+                    <plus/>
+                    <ci> IFNb_env </ci>
+                    <ci> IFNa_env </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> K3 </ci>
+                  <ci> IFNb_env </ci>
+                  <ci> IFNa_env </ci>
+                </apply>
+              </apply>
+              <cn type="integer"> 1 </cn>
+            </apply>
+            <apply>
+              <plus/>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> K9 </ci>
+                  <ci> SOCS1m </ci>
+                </apply>
+                <ci> delta </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfReactions>
+      <reaction id="J1" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IFNb_mRNA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="IRF7Pn"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci> r0 </ci>
+                    <ci> IC1 </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> k15 </ci>
+                    <ci> IRF7Pn </ci>
+                  </apply>
+                </apply>
+                <ci> IC2 </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> IFNb_mRNA </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao1 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IFNb_env" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="IFNb_mRNA"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <cn type="integer"> 1000000000 </cn>
+                    <ci> C </ci>
+                    <ci> vmax2 </ci>
+                  </apply>
+                  <ci> NA </ci>
+                </apply>
+                <ci> IFNb_mRNA </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K2 </ci>
+                <ci> IFNb_mRNA </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J3" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="STATP2n" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="STAT"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <divide/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> K5 </ci>
+                    <ci> TJ </ci>
+                    <ci> STAT </ci>
+                  </apply>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> K5 </ci>
+                  <ci> STAT </ci>
+                </apply>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> STATP2n </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao3 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J4" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="SOCS1m" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="STATP2n"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci> r3 </ci>
+                    <ci> IC1 </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> k8 </ci>
+                    <ci> STATP2n </ci>
+                  </apply>
+                </apply>
+                <ci> IC2 </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> SOCS1m </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao4 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J5" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IRF7m" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="IRF7Pn"/>
+          <modifierSpeciesReference species="STATP2n"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci> k11 </ci>
+                    <ci> STATP2n </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> k14 </ci>
+                    <ci> IRF7Pn </ci>
+                  </apply>
+                </apply>
+                <ci> IC2 </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> IRF7m </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao6 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J6" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IRF7Pn" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="IRF7m"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k12 </ci>
+              <ci> IC1 </ci>
+              <ci> IRF7m </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J7" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IFNa_mRNA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="IRF7Pn"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> k16 </ci>
+                <ci> IRF7Pn </ci>
+                <ci> IC2ifa </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> IFNa_mRNA </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao8 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J8" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="IFNa_env" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="IFNa_mRNA"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <cn type="integer"> 1000000000 </cn>
+                    <ci> C </ci>
+                    <ci> vmax17 </ci>
+                  </apply>
+                  <ci> NA </ci>
+                </apply>
+                <ci> IFNa_mRNA </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K17 </ci>
+                <ci> IFNa_mRNA </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J9" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="TNFam" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TNFenv"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci> r1 </ci>
+                    <ci> IC1 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> rmax20 </ci>
+                      <ci> TNFenv </ci>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <ci> K20 </ci>
+                      <ci> TNFenv </ci>
+                    </apply>
+                  </apply>
+                </apply>
+                <ci> IC2 </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> TNFam </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao9 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J10" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="TNFenv" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TNFam"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <cn type="integer"> 1000000000 </cn>
+                    <ci> C </ci>
+                    <ci> vmax19 </ci>
+                  </apply>
+                  <ci> NA </ci>
+                </apply>
+                <ci> TNFam </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> K19 </ci>
+                <ci> TNFam </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J11" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="STATm" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="STATP2n"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <ci> r4 </ci>
+                    <ci> IC1 </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> k26 </ci>
+                    <ci> STATP2n </ci>
+                  </apply>
+                </apply>
+                <ci> IC2 </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> STATm </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao12 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="J12" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="w" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="STAT" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="STATm"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> k28 </ci>
+                <ci> STATm </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> STAT </ci>
+                  <apply>
+                    <ln/>
+                    <cn type="integer"> 2 </cn>
+                  </apply>
+                </apply>
+                <ci> tao13 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
